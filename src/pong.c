@@ -4,6 +4,7 @@
 
 void draw(int, int, int, int);
 int checkSP(int, int, int);
+// int checkWin(int, int, int, int);
 // int field_rackets(int, int);
 int main(void) {
     int x, y, spX, spY, rack1, rack2;
@@ -20,7 +21,6 @@ int main(void) {
         rack1 = 6;
         rack2 = 12;
         draw(x, y, rack1, rack2);
-
         getchar();
     }
     return (0);
@@ -28,6 +28,9 @@ int main(void) {
 
 void draw(int ballX, int ballY, int rack1, int rack2) { 
     for (int y = 0; y <= HT; y++) {
+        if (y == 0 || y == HT) {
+            for (int i = 0; i <= WT; i++) { printf("%c", '-'); } 
+        }
         for (int x = 80; x >= 0; x--) {  // x
             if (((rack1 == y) || (rack1+1 == y) || (rack1-1 == y)) && (x == 0)) {
                 printf("|");
@@ -39,10 +42,9 @@ void draw(int ballX, int ballY, int rack1, int rack2) {
                 printf(" ");
             }        
         }
-        if (y == 0 || y == HT) {
-            for (int i = 0; i <= WT; i++) { printf("%c", '-'); } 
-        }  
+        printf("\n");
     }
 }
 
 int checkSP(int coor, int sp, int range) { return ((((coor + sp) < range) && ((coor + sp) > 0) ) ? (sp) : (-sp)); }
+// int checkWin(int ballX, int ballY, int rack1
