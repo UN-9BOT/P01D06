@@ -4,12 +4,11 @@
 
 void draw(int, int);
 int checkSP(int, int, int);
-int field_rackets(int, int);
-
+// int field_rackets(int, int);
 int main(void) {
-    int x, y, spX, spY;
+    int x, y, spX, spY, rack;
 
-    x = y = spX = spY = 1; 
+    x = y = spX = spY = 2; 
     draw(x, y);
     printf("\n");
     while (1) {
@@ -17,23 +16,22 @@ int main(void) {
         spY = checkSP(y, spY, HT);
         x += spX;
         y += spY;
-        //
-        draw(x,y);
+        // rack = field_rackets(x, y); 
+        rack = 1;
+        draw(
         getchar();
     }
     return (0);
 }
 
 void draw(int x, int y) { 
-    for (int k = 0; k < HT; k++) {  // y
+    for (int k = 0; k <= HT; k++) {  // y
         if (k == y) { // y 
-            for (int j = 0; j < WT; j++) { 
+            for (int j = 0; j <= WT; j++) {  // x
                 if (j == x) { printf("*"); } else { printf(" "); } }
         }         
         if (k == 0 || k == HT) {
-            for (int i = 0; i <= WT; i++) {
-                printf("%c", '-'); 
-            } 
+            for (int i = 0; i <= WT; i++) { printf("%c", '-'); } 
         } else { printf("\n"); }
     }
 }
