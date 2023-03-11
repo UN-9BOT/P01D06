@@ -4,9 +4,13 @@
 int check_click(char var);
 void draw(int cor1, int cor2);
 //int check_click_2(char var);
+int checkSP(int, int, int);
+int checkLose(int, int, int);
 
 int main()
 {
+    int ballX, ballY;        // координаты мяча
+    int spX, spY;
     
     int cor1 = 13; //координаты по оси у у ракеток
     int cor2 = 13;
@@ -117,38 +121,10 @@ void draw(int rack1, int rack2) {
     }
 }
 
-/*
-void draw(int rack1, int rack2) {
-    int HT = 25;
-    int WT = 80;
-    for (int y = 0; y <= HT; y++) {
-        if (y == 0 || y == HT) {
-            for (int i = 0; i <= WT; i++)
-            {
-                printf("%c", '#');
-                
-            }
-            printf("\n");
-        }
-        for (int x = 0; x <= WT; x++) {  // x
-            if ((rack1 == y || rack1+1 == y || rack1-1 == y) && x == 0)
-            {
-                printf("|");
-            }
-            else if ((rack2 == y || rack2+1 == y || rack2-1 == y) && x == 80)
-            {
-                printf("|");
-                
-            }
-            else
-            {
-                printf(" ");
-            }
-        }
-        printf("\n");
-    }
+int checkSP(int coor, int sp, int range) {
+    return ((((coor + sp) <= range) && ((coor + sp) >= 0)) ? (sp) : (-sp));
 }
-*/
+
 /*
 int check_input()
 {
@@ -160,3 +136,4 @@ int check_input()
     
 }
 */
+
