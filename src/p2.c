@@ -7,7 +7,6 @@ int checkSP(int, int, int);
 int check_click(char var);
 int checkLose(int, int, int);
 void whiller(void);
-// int ballSP(int, int, int);
 
 int main(void) {
     int ballX, ballY;        // координаты мяча
@@ -57,14 +56,14 @@ int main(void) {
             } 
             printf("%i, %i\n", counter1, counter2);
         }
-        // printf("%i, %i\n", counter1, counter2);
     }
 }
 void draw(int ballX, int ballY, int rack1, int rack2) {
     for (int y = 1; y <= HT; y++) {  // Ось ракетки
         if (y == 1 || y == HT) {
             for (int i = 1; i <= WT; i++) { // Ось границ
-                printf("%c", '-');
+                //printf("%c", '-');
+                printf("%i",i % 10);
             }
             printf("\n");
         } else {
@@ -85,13 +84,8 @@ void draw(int ballX, int ballY, int rack1, int rack2) {
 }
 
 int checkSP(int coor, int sp, int range) {
-    return ((((coor + sp) <= range) && ((coor + sp) > 1)) ? (sp) : (-sp));
+    return ((((coor + sp) <= range) && ((coor + sp) >= 1)) ? (sp) : (-sp));
 }
-
-// int ballSP(int ballX, int ballY, int rack, int sp) {
-
-// }
-
           
 int checkLose(int ballX, int ballY, int rack) {
     printf("%d %d %d \n", ballX, ballY, rack);
