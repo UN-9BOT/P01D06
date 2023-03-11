@@ -25,7 +25,7 @@ int main()
     
     return 0;
 }
-/*
+
 int rackets(int cor1, cor2)
 {
     int HT = 25;
@@ -33,25 +33,32 @@ int rackets(int cor1, cor2)
     
     for(int i = 1; i<= HT; i++)
     {
+        if(i==cor1-1 || i == cor || i == cor + 1)
+        {
+            printf("|");
+            //printf("\n");
+        }
+        
         
         for(int j = 1; j<= WT; j++)
         {
             
-            if(i==cor1-1)
+            if (j==80)
             {
-                printf("|");
-                printf("\n");
-                printf("|");
-                printf("\n");
-                printf("|");
-                printf("\n");
-                i++;
+                if(i==cor2-1 || i==cor2 || i == cor2 + 1)
+                {
+                    printf("|");
+                    printf("\n");
+                    i++;
+                }
+            }
+            
             
         }
         
     }
 }
-*/
+
 int check_click(char var, int cor1, int cor2)
 {
 
