@@ -19,22 +19,29 @@ int main(void) {
         // rack = field_rackets(x, y); 
         rack1 = 6;
         rack2 = 12;
-        draw(x, y, rack1, rack);
+        draw(x, y, rack1, rack2);
 
         getchar();
     }
     return (0);
 }
 
-void draw(int x, int y, int rack1, int rack2) { 
-    for (int k = 0; k <= HT; k++) {  // y
-        if (k == y) { // y 
-            for (int j = 0; j <= WT; j++) {  // x
-                if (j == x) { printf("*"); } else { printf(" "); } }
-        }         
-        if (k == 0 || k == HT) {
+void draw(int ballX, int ballY, int rack1, int rack2) { 
+    for (int y = 0; y <= HT; y++) {
+        for (int x = 80; x >= 0; x--) {  // x
+            if (((rack1 == y) || (rack1+1 == y) || (rack1-1 == y)) && (x == 0)) {
+                printf("|");
+            } else if (((rack2 == y) || (rack2+1 == y) || (rack2-1 == y)) && (x == 80)) {
+                printf("|");
+            } else if ((ballX == x) && (ballY == y)) { 
+                printf("*"); 
+            } else {
+                printf(" ");
+            }        
+        }
+        if (y == 0 || y == HT) {
             for (int i = 0; i <= WT; i++) { printf("%c", '-'); } 
-        } else { printf("\n"); }
+        }  
     }
 }
 
