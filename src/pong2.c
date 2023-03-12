@@ -190,7 +190,8 @@ void drawStart(void) {
                 } else if (y == 16 && x == 37) {
                     printf("SPACE");
                     x += 5;
-                } else printf(" ");
+                } else
+                    printf(" ");
             }
             printf("\n");
         }
