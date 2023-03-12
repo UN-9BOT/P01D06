@@ -9,6 +9,7 @@ int check_click(char);
 int checkLose(int, int);
 void prCounter(int, int);
 void prWinner(int);
+void drawStart(void);
 
 int main(void) {
     int flag;
@@ -22,7 +23,7 @@ int main(void) {
     spX = spY = 1;
     counter1 = counter2 = flag = 0;
     rack1 = rack2 = 13;
-
+    drawStart();
     while (counter1 != 21 && counter2 != 21) {
         char var;  // symbol for input
         var = getchar();
@@ -36,7 +37,6 @@ int main(void) {
                 rack2 = rack2 - check_click(var);
                 flag = 2;
             }
-
         } else if (var == ' ' && flag == 1) {
             flag = 2;
         } else if (var == ' ' && flag == 2) {
@@ -154,6 +154,44 @@ void prWinner(int win) {
                 } else {
                     printf(" ");
                 }
+            }
+            printf("\n");
+        }
+    }
+}
+
+void drawStart(void) {
+    for (int y = 1; y <= HT; y++) {  // Ось ракетки
+        if (y == 1 || y == HT) {
+            for (int i = 1; i <= WT; i++) {  // Ось границ
+                printf("%c", '-');
+            }
+            printf("\n");
+        } else {
+            for (int x = 1; x <= WT; x++) {
+                if ((13 == y || 14 == y || 12 == y) && x == 1) {
+                    printf("|");
+                } else if ((13 == y || 14 == y || 12 == y) && x == WT) {
+                    printf("|");
+                } else if (y == 10 && x == 33) {
+                    printf("Press any key");
+                    x += 13;
+                } else if (y == 11 && x == 36) {
+                    printf("to start");
+                    x += 8;
+                } else if (y == 13 && x == 29) {
+                    printf("Player1        Player2");
+                    x += 22;
+                } else if (y == 14 && x == 29) {
+                    printf("<A>                <K>");
+                    x += 22;
+                } else if (y == 15 && x == 29) {
+                    printf("  <Z>            <M>  ");
+                    x += 22;
+                } else if (y == 16 && x == 37) {
+                    printf("SPACE");
+                    x += 5;
+                } else printf(" ");
             }
             printf("\n");
         }
