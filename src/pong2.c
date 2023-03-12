@@ -47,7 +47,6 @@ int main(void) {
         spY = checkSPforHT(ballY, spY, HT);
         ballX += spX;
         ballY += spY;
-        draw(ballX, ballY, rack1, rack2);  // print all data
         if (ballX == 2) {
             counter2 += checkLose(ballY, rack1);
         } else if (ballX == 79) {
