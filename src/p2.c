@@ -4,6 +4,7 @@
 
 void draw(int, int, int, int);
 int checkSP(int, int, int);
+int checkSPforHT(int, int, int);
 int check_click(char var);
 int checkLose(int, int, int);
 void whiller(void);
@@ -12,7 +13,6 @@ int main(void) {
     int ballX, ballY;        // координаты мяча
     int spX, spY;            // направление
     int counter1, counter2;  // счетчик результатов
-    int rescheck;            // буфер для чекера результатов
     int rack1, rack2;        //координаты оп оси у у ракеток
 
     ballX = 40;
@@ -41,18 +41,16 @@ int main(void) {
             //}
 
             spX = checkSP(ballX, spX, WT);
-            spY = checkSP(ballY, spY, HT);
+            spY = checkSPforHT(ballY, spY, HT);
             ballX += spX;
             ballY += spY;
             draw(ballX, ballY, rack1, rack2);
             printf("%i %i %i %i \n", ballX, ballY, rack1, rack2);
-            if (ballX == 2)  {
-                rescheck = checkLose(ballX, ballY, rack1);
-                counter2 += rescheck;
+            if (ballX == 1)  {
+                counter2 += checkLose(ballX, ballY, rack1);
             }
             else if (ballX == 80) {
-                rescheck = checkLose(ballX, ballY, rack2);
-                counter1 += rescheck;
+                counter1 += checkLose(ballX, ballY, rack2);
             } 
             printf("%i, %i\n", counter1, counter2);
         }
@@ -60,10 +58,11 @@ int main(void) {
 }
 void draw(int ballX, int ballY, int rack1, int rack2) {
     for (int y = 1; y <= HT; y++) {  // Ось ракетки
+        // printf("%i", y);
         if (y == 1 || y == HT) {
             for (int i = 1; i <= WT; i++) { // Ось границ
-                //printf("%c", '-');
-                printf("%i",i % 10);
+                printf("%c", '-');
+                // printf("%i",i % 10);
             }
             printf("\n");
         } else {
@@ -85,6 +84,9 @@ void draw(int ballX, int ballY, int rack1, int rack2) {
 
 int checkSP(int coor, int sp, int range) {
     return ((((coor + sp) <= range) && ((coor + sp) >= 1)) ? (sp) : (-sp));
+}
+int checkSPforHT(int coor, int sp, int range) {
+    return ((((coor + sp) < range) && ((coor + sp) > 1)) ? (sp) : (-sp));
 }
           
 int checkLose(int ballX, int ballY, int rack) {
