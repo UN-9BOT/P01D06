@@ -3,7 +3,7 @@
 #define WT 80
 
 void draw(int, int, int, int);
-int checkSP(int, int, int);
+int checkSPforWT(int, int, int);
 int checkSPforHT(int, int, int);
 int check_click(char var);
 int checkLose(int, int, int);
@@ -22,8 +22,6 @@ int main(void) {
     rack1 = rack2 = 13;
 
     while (1) {
-        draw(ballX, ballY, rack1, rack2);
-        // printf("\n");
         while (1) {
             char var;
             scanf("%c", &var);
@@ -40,16 +38,16 @@ int main(void) {
                // rack2 = rack2;
             //}
 
-            spX = checkSP(ballX, spX, WT);
+            spX = checkSPforWT(ballX, spX, WT);
             spY = checkSPforHT(ballY, spY, HT);
             ballX += spX;
             ballY += spY;
             draw(ballX, ballY, rack1, rack2);
             printf("%i %i %i %i \n", ballX, ballY, rack1, rack2);
-            if (ballX == 1)  {
+            if (ballX == 2)  {
                 counter2 += checkLose(ballX, ballY, rack1);
             }
-            else if (ballX == 80) {
+            else if (ballX == 79) {
                 counter1 += checkLose(ballX, ballY, rack2);
             } 
             printf("%i, %i\n", counter1, counter2);
@@ -82,8 +80,8 @@ void draw(int ballX, int ballY, int rack1, int rack2) {
     }
 }
 
-int checkSP(int coor, int sp, int range) {
-    return ((((coor + sp) <= range) && ((coor + sp) >= 1)) ? (sp) : (-sp));
+int checkSPforWT(int coor, int sp, int range) {
+    return ((((coor + sp) < range) && ((coor + sp) > 1)) ? (sp) : (-sp));
 }
 int checkSPforHT(int coor, int sp, int range) {
     return ((((coor + sp) < range) && ((coor + sp) > 1)) ? (sp) : (-sp));
